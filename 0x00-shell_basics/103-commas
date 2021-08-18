@@ -1,2 +1,2 @@
 #!/bin/bash
-ls -m -F -a -v 
+ls -m --file-type -a -v 
