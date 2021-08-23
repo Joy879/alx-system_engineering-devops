@@ -1,2 +1,2 @@
 #!/bin/bash
-cut -f1 -d$'\t' |sort|uniq -c|tr -s '' -k1 -nr| head -11 |cut -d' ' -f3
+tail -n+2 | cut -f1 | sort | uniq -c | sort -nr | rev | cut --delimeter=' ' -f1 | rev | head --lines=11
