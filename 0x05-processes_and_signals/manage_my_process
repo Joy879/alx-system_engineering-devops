@@ -1,0 +1,11 @@
+
+#!/usr/bin/env bash
+# writest he mesaage I am alive to /tmp/my_process
+
+
+echo "" > /tmp/my_process
+
+while true;
+do
+  echo "I am alive!" >> /tmp/my_process
+done
