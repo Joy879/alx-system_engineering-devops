@@ -17,36 +17,26 @@
 #   If any other or no arguments are passed, displays
 #+  "Usage: manage_my_process {start|stop|restart}"
 
-
-# check for the correct amount of argument
-if [ -z "$1" ]
-then
-  echo "Usage: manage_my_process {start|stop|restart}"
-  exit
-elif [ -n "$2" ]
-  then
-  echo "Usage: manage_my_process {start|stop|restart}"
-  exit
-fi
-
-
-# executet the command line arguments
 if [ "$1" == "start" ]
 then
-  sudo ./manage_my_process &
+  ./manage_my_process &
   echo $$ > /var/run/my_process.pid
   echo "manage_my_process started"
 
 elif [ "$1" == "stop" ]
 then
-  [ -e "/var/run/my_process.pid" ] && sudo pkill -f "./manage_my_process" && rm /var/run/my_process.pid
+  kill "$(pgrep -f /manage_my_process)" 
+  rm /var/run/my_process.pid
   echo "manage_my_process stopped"
 
 elif [ "$1" == "restart" ]
 then
-  $0 stop >& /dev/null
-  $0 start >& /dev/null
+  kill "$(pgrep -f /manage_my_process)"
+  rm /var/run/my_process.pid
+  ./manage_my_process &
+  echo $$ > /var/run/my_process.pid
   echo "manage_my_process restarted"
+
 else
   echo "Usage: manage_my_process {start|stop|restart}"
 fi
