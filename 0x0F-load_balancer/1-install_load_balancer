@@ -1,14 +1,14 @@
 #!/usr/bin/env bash
-# Install and configure HAProxy load balancer to 297-lb-01
+# Install and configure HAProxy load balancer to 2135-lb-01
 # sends traffic to web-01 and web-02
 
 
-CONFGF="\\\nlisten appname 0.0.0.0:80\n\tmode http\n\tbalance roundrobin\n\toption httpclose\n\toption forwardfor\n\tserver 297-web-01 35.196.78.105 check\n\tserver 297-web-02 3.239.101.159 check\n"
+CONFGF="\\\nlisten appname 0.0.0.0:80\n\tmode http\n\tbalance roundrobin\n\toption httpclose\n\toption forwardfor\n\tserver 2135-web-01 35.237.202.79 check\n\tserver 2135-web-02 34.204.185.51 check\n"
 
 sudo apt-get update
 sudo apt-get -y install nginx
 #version 1.5 and above
-sudo apt-get install -y haproxy=1.5\*
+sudo apt-get install -y haproxy
 #enable HAproxy can be managed via an init script
 sudo sed -i "s/ENABLED=0/ENABLED=1/" /etc/default/haproxy
 # include roundrobin and two servers
