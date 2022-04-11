@@ -1,4 +1,5 @@
 #!/usr/bin/python3
+"Python script that exports data in CSV format"
 import requests
 import sys
 
@@ -38,5 +39,3 @@ def tasks_done(id):
 
 if __name__ == "__main__":
     tasks_done(sys.argv[1])
-
-    
